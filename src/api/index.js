@@ -1,0 +1,17 @@
+import axios from 'axios'
+
+// API.interceptors.request.use((req) => {
+//         req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+//     return req
+// })
+
+const baseURL = 'https://radiant-caverns-83484.herokuapp.com' 
+const api = axios.create({baseURL})
+
+export const createSleep = (newSleep) => api.post('/sleep', newSleep)
+export const getSleep = () => api.get('/sleep')
+
+export const signIn = (formData) => api.post('/user/signin', formData)
+
+export const signUp = (formData) => api.post('/user/signup', formData)
+
