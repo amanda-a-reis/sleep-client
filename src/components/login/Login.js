@@ -67,7 +67,7 @@ const Login = () => {
                         <InputFloating name='email' label='Email' defaultValue="" handleChange={handleChange} type='email' />
                         <InputFloating name='password' label='Senha' defaultValue="" handleChange={handleChange} type={showPassoword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
                         {
-                            isSignup && <InputFloating name="Confirmar senha" label="Confirmar senha" defaultValue="" handleChange={handleChange} type="password" />
+                            isSignup && <InputFloating name="confirmPassword" label="Confirmar senha" defaultValue="" handleChange={handleChange} type="password" />
                         }
                     </Box>
                     <Box  display='flex' flexDirection='column' alignItems='center'>
