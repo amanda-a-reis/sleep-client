@@ -54,7 +54,7 @@ const Login = () => {
 
     return (
         <Box display='flex' justifyContent="center"  height='100vh' pt={200} bg='orange'>
-            <Box display='flex' flexDirection='column' alignItems='center' bg='white' height={isSignup ? '65vh' : '45vh'} p={50} borderRadius='12px'>
+            <Box display='flex' flexDirection='column' alignItems='center' bg='white' height={isSignup ? '600' : '450px'} p={50} borderRadius='12px'>
                 <Avatar icon={<FaKey fontSize='1.5rem' color='white'/>} bg='orange'/>
                 <Text variant='h5' mt={5} mb={5}>{isSignup ? 'Sign Up' : 'Sign In'}</Text>
                 <FormProvider {...methods}>

@@ -35,6 +35,11 @@ export const theme = extendTheme({
                         }
                     }
                 }
+            },
+            mobile: {
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100vw'
             }
         }
     }
