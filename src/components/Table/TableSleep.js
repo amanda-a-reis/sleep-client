@@ -1,42 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react'
-import { getSleep } from '../../api'
 import { SleepContext } from '../../context/Context'
 
 
 
 const TableSleep = () => {
 
-    const [table, setTable] = useState([])
-    const user = JSON.parse(localStorage.getItem('profile'))
-
-    const getTable = async () => {
-
-        try {
-            const { data } = await getSleep()
-
-            let newTable = data.filter(dados => dados.user === user)
-
-            newTable = newTable.slice(0,7)
-
-            setTable(newTable)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const { updateChart, user, table } = useContext(SleepContext)
 
     useEffect(() => {
-        getTable()
+        updateChart()
     }, [])
 
     if (!user) {

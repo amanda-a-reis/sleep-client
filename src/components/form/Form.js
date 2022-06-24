@@ -22,20 +22,22 @@ const Form = () => {
 
     const date = new Date().toISOString().split('T')[0]
 
-    const { user, setUser } = useContext(SleepContext)
+    const { updateChart } = useContext(SleepContext)
 
     const onSubmit = async (data) => {
         try {
             const user = JSON.parse(localStorage.getItem('profile'))
             const dataUser = {
-                idUser: user,
+                user: user,
                 date: data.date,
                 sleepHour: data.sleepHour,
                 wakeUpHour: data.wakeUpHour
             }
             const { newData } = await createSleep({ "data": dataUser })
+            updateChart()
             onClose()
-            window.location.reload();
+
+            
         } catch (error) {
             console.log(error)
         }

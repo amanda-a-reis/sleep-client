@@ -38,60 +38,59 @@ export const options = {
 };
 
 function Graphic() {
-    const [data, setData] = useState()
-    const { dispatch, state } = useContext(SleepContext)
+    const { updateChart, chartData } = useContext(SleepContext)
     const user = JSON.parse(localStorage.getItem('profile'))
 
-    const getTable = async () => {
+    // const getTable = async () => {
 
-        try {
-            const { data } = await getSleep()
+    //     try {
+    //         const { data } = await getSleep()
 
-            let newData = data.filter(dados => dados.user === user)
+    //         let newData = data.filter(dados => dados.user === user)
 
-            newData = newData.map(data => {
-                return data.hour
-            })
+    //         newData = newData.map(data => {
+    //             return data.hour
+    //         })
 
-            newData = newData.slice(0,7)
+    //         newData = newData.slice(0,7)
 
-            let labels = data.filter(dados => dados.user === user)
+    //         let labels = data.filter(dados => dados.user === user)
 
-           labels = labels.map(data => {
-                return data.date
-            })
+    //        labels = labels.map(data => {
+    //             return data.date
+    //         })
 
-            labels = labels.slice(0,7)
+    //         labels = labels.slice(0,7)
 
-            const dataGraphic = {
-                labels,
-                datasets: [
-                    {
-                        label: 'Dataset 1',
-                        data: newData,
-                        borderColor: 'orange',
-                        backgroundColor: 'orange',
-                    },
-                ],
-            };
+    //         const dataGraphic = {
+    //             labels,
+    //             datasets: [
+    //                 {
+    //                     label: 'Dataset 1',
+    //                     data: newData,
+    //                     borderColor: 'orange',
+    //                     backgroundColor: 'orange',
+    //                 },
+    //             ],
+    //         };
 
-            console.log(data)
-            setData(dataGraphic)
+    //         console.log(data)
+    //         setData(dataGraphic)
 
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     useEffect(() => {
-        getTable()
+        updateChart()
     }, [])
 
-    if (!data || !user) {
+    if (!chartData || !user) {
         return <Box>
         </Box>
     } else {
-        return <Line options={options} data={data} />;
+        return <Line options={options} data={chartData} />;
     }
 }
 
