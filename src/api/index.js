@@ -5,7 +5,7 @@ import axios from 'axios'
 //     return req
 // })
 
-const baseURL = 'https://radiant-caverns-83484.herokuapp.com' 
+const baseURL = 'https://sleep-project01.herokuapp.com' 
 const api = axios.create({baseURL})
 
 export const createSleep = (newSleep) => api.post('/sleep', newSleep)
