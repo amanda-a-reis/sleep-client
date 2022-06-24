@@ -26,6 +26,7 @@ const Login = () => {
                 const {login} = await signIn(newData)
                 localStorage.setItem('profile', JSON.stringify(data.email))
                 history.push('/menu')
+                window.location.reload()
             }
         } catch (error) {
             alert('Email ou senha incorretos')
