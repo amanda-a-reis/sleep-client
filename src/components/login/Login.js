@@ -23,8 +23,10 @@ const Login = () => {
                 setIsSignup(false)
             } else {
                 const newData = {email: data.email, password: data.password}
-                const {login} = await signIn(newData)
+                const login = await signIn(newData)
                 localStorage.setItem('profile', JSON.stringify(data.email))
+                localStorage.setItem('name', JSON.stringify(login.data.result.name))
+                console.log(login)
                 history.push('/menu')
                 window.location.reload()
             }

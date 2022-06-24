@@ -4,6 +4,7 @@ import {
   Grid,
   GridItem,
   Box,
+  Text,
 } from '@chakra-ui/react';
 import Graphic from './components/Graphic/Graphic';
 import TableSleep from './components/Table/TableSleep';
@@ -11,7 +12,7 @@ import Logout from './components/logout/Logout';
 import Form from './components/form/Form'
 
 function App() {
-
+  const name = JSON.parse(localStorage.getItem('name'))
   return (
       <FormControl variant='floating'>
 
@@ -26,8 +27,10 @@ function App() {
           color='blackAlpha.700'
           fontWeight='bold'
         >
-          <GridItem pl='2' bg='orange.300' area={'header'} display='flex' flexDirection='row-reverse'>
+          <GridItem pl='2' bg='orange.300' area={'header'} display='flex' flexDirection='row-reverse' justifyContent='space-between' alignItems='center'>
             <Logout />
+            <Text ml={25} color='white'>Seja bem-vindo(a) {name}</Text>
+
           </GridItem>
           <GridItem w='90vw' h='90vh'>
             <Box display='flex' justifyContent='center'>
