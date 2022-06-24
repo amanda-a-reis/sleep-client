@@ -28,7 +28,7 @@ const Login = () => {
                 history.push('/menu')
             }
         } catch (error) {
-            alert(error)
+            alert('Email ou senha incorretos')
         }
         
     }
