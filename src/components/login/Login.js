@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Box, Avatar, Text, Input, Button } from '@chakra-ui/react'
+import { Box, Avatar, Text, Input, Button} from '@chakra-ui/react'
 import InputFloating from '../InputFloating'
 import { useForm, FormProvider } from 'react-hook-form'
 import {FaKey} from 'react-icons/fa'
 import { signIn, signUp } from '../../api'
 import { SleepContext } from '../../context/Context'
+
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
 
@@ -37,7 +38,7 @@ const Login = () => {
     }
 
 
-    const handleShowPassword = () => setShowPassword((prevShowPassowrd) => !prevShowPassowrd)
+    
 
 
     const handleChange = (e) => {
@@ -68,7 +69,7 @@ const Login = () => {
                             )
                         }
                         <InputFloating name='email' label='Email' defaultValue="" handleChange={handleChange} type='email' />
-                        <InputFloating name='password' label='Senha' defaultValue="" handleChange={handleChange} type={showPassoword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+                        <InputFloating name='password' label='Senha' defaultValue="" handleChange={handleChange} type={showPassoword ? 'text' : 'password'} showPassoword={showPassoword} setShowPassword={setShowPassword} eye='eye'/>
                         {
                             isSignup && <InputFloating name="confirmPassword" label="Confirmar senha" defaultValue="" handleChange={handleChange} type="password" />
                         }

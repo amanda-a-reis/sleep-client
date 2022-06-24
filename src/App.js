@@ -33,8 +33,9 @@ function App() {
 
           </GridItem>
           <GridItem w='90vw' h='90vh'>
-            <Box display='flex' justifyContent='center'>
+            <Box display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
               <Form />
+              <Text mt={25}>Registro dos últimos sete dias</Text>
             </Box>
             <Box display='flex' alignItems='center'>
               <GridItem pl='2' area={'main'} h='50vh' w='60vw' mt={100}>
