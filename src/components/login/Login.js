@@ -21,7 +21,7 @@ const Login = () => {
         try {
             if(isSignup) {
                 const {login} = await signUp(data)
-                window.location.reload();
+                history.push('/login')
             } else {
                 const newData = {email: data.email, password: data.password}
                 const {login} = await signIn(newData)
