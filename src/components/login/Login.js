@@ -17,13 +17,14 @@ const Login = () => {
     const {user, setUser} = useContext(SleepContext)
 
     const onSubmit = async (data) => {
+        console.log(data)
         try {
             if(isSignup) {
-                const {login} = await signUp({"data": data})
+                const {login} = await signUp(data)
                 window.location.reload();
             } else {
                 const newData = {email: data.email, password: data.password}
-                const {login} = await signIn({"data": newData})
+                const {login} = await signIn(newData)
                 localStorage.setItem('profile', JSON.stringify(data.email))
                 history.push('/menu')
             }
