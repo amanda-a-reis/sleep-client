@@ -5,7 +5,17 @@ export const SleepContext = createContext()
 SleepContext.displayName = 'Sleep Context'
 
 export const SleepProvider = ({ children }) => {
-  const [chartData, setChartData] = useState([])
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+        {
+            label: 'Dataset 1',
+            data: [],
+            borderColor: 'orange',
+            backgroundColor: 'orange',
+        },
+    ],
+})
   const [table, setTable] = useState([])
 
   const user = JSON.parse(localStorage.getItem('profile'))
