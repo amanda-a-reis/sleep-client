@@ -20,7 +20,7 @@ const TableSleep = () => {
     const [mediaQuerieMobile] = useMediaQuery('(max-width: 560px)')
 
     useEffect(() => {
-        updateChart()
+        updateChart('')
     }, [])
 
     if (mediaQuerieMobile) {

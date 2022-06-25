@@ -11,6 +11,7 @@ import Graphic from './components/Graphic/Graphic';
 import TableSleep from './components/Table/TableSleep';
 import Logout from './components/logout/Logout';
 import Form from './components/form/Form'
+import Filter from './components/filter/Filter';
 
 function App() {
   const name = JSON.parse(localStorage.getItem('name'))
@@ -36,6 +37,9 @@ function App() {
 
           </GridItem>
           <GridItem w='90vw' h='90vh'>
+            <Box>
+              <Filter />
+            </Box>
             <Box display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
               <Form />
               <Text mt={25}>Registro dos últimos sete dias</Text>

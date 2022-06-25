@@ -20,10 +20,10 @@ export const SleepProvider = ({ children }) => {
 
   const user = JSON.parse(localStorage.getItem('profile'))
   
-  const updateChart = async () => {
+  const updateChart = async (query) => {
 
     try {
-        const { data } = await getSleep()
+        const { data } = await getSleep(query)
 
         let newData = data.filter(dados => dados.user === user)
 

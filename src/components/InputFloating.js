@@ -16,7 +16,7 @@ function InputFloating({ label, name, type, defaultValue, eye, showPassword, set
         <FormControl variant='floating'>
             <FormLabel>{label}</FormLabel>
             <InputGroup>
-                <Input mb={5} {...register(`${name}`)} focusBorderColor='black' type={type} defaultValue={defaultValue} />
+                <Input mb={5} {...register(`${name}`)} focusBorderColor='black' type={type} defaultValue={defaultValue}/>
                 {
                     eye === 'eye' ? (
                         <InputRightElement children={<IoMdEye color='orange' onClick={() =>  handleShowPassword()}/>} />

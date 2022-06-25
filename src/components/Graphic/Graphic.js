@@ -83,7 +83,8 @@ function Graphic() {
     // }
 
     useEffect(() => {
-        updateChart()
+        updateChart('')
+        console.log(chartData, user)
     }, [])
 
     if (!chartData || !user) {
