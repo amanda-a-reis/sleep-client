@@ -42,10 +42,9 @@ function App() {
             </Box>
             <Box display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
               <Form />
-              <Text mt={25}>Registro dos últimos sete dias</Text>
             </Box>
             <Box display='flex' alignItems='center' flexDirection={isSmallerThan ? 'column' : 'row'}>
-              <GridItem pl='2' area={'main'} h={mediaQueriaMobile ? '50vh' : '50vh'} w={mediaQueriaMobile ? '100vw' : '60vw'} mt={isSmallerThan ? '50px' : '100px'}>
+              <GridItem pl='2' area={'main'} h={mediaQueriaMobile ? '50vh' : '50vh'} w={mediaQueriaMobile ? '100vw' : '60vw'} mt={isSmallerThan ? '50px' : '100px'} ml={isSmallerThan ? '10px' : '0'}>
                 <Graphic />
               </GridItem>
               <GridItem h='50vh' w={mediaQueriaMobile ? '80vw' : '50vw'} mt={mediaQueriaMobile ? '0' : '150px'}>

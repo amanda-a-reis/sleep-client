@@ -35,6 +35,7 @@ const Form = () => {
             }
             const { newData } = await createSleep({ "data": dataUser })
             updateChart()
+            window.location.reload()
             onClose()
 
             
@@ -47,7 +48,7 @@ const Form = () => {
     const methods = useForm();
     return (
         <Box>
-            <Button onClick={onOpen} mt={5}>Cadastrar Sono</Button>
+            <Button onClick={onOpen} mt={5} colorScheme='orange'>Cadastrar Sono</Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
