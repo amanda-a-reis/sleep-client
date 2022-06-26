@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Box, Button, Text } from '@chakra-ui/react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,7 +13,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { getSleep } from '../../api/index'
 import { SleepContext } from '../../context/Context'
-import {Box} from '@chakra-ui/react'
+
 
 ChartJS.register(
     CategoryScale,
@@ -38,8 +39,9 @@ export const options = {
 };
 
 function Graphic() {
-    const { updateChart, chartData } = useContext(SleepContext)
+    const { updateChart, chartData, queryDefault } = useContext(SleepContext)
     const user = JSON.parse(localStorage.getItem('profile'))
+    const [page, setPage] = useState(1)
 
     // const getTable = async () => {
 
@@ -83,15 +85,25 @@ function Graphic() {
     // }
 
     useEffect(() => {
-        updateChart('')
-        console.log(chartData, user)
-    }, [])
+        if(page > 0) updateChart(queryDefault, page)
+    }, [page])
 
     if (!chartData || !user) {
         return <Box>
         </Box>
     } else {
-        return <Line options={options} data={chartData} />;
+        return (
+            <Box display='flex' flexDirection='column' alignItems='center' >
+                <Line options={options} data={chartData} />
+                <Box>
+                    <Text bg='orange' padding='15px 25px' borderRadius='50%' mb={5} mt={5} color='white'>{page > 0 ? page : '1'}</Text>
+                </Box>
+                <Box>
+                    <Button colorScheme='orange' onClick={() => {page > 0 ? setPage(page - 1): setPage(1)}}>voltar</Button>
+                    <Button colorScheme='orange' ml={15} onClick={() => setPage(page + 1)}>próximo</Button>
+                </Box>
+            </Box>
+        )
     }
 }
 

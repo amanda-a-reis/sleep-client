@@ -20,7 +20,7 @@ const Filter = () => {
     const [option, setOption] = useState('')
     const [secondOp, setSecondOp] = useState('')
 
-    const { updateChart, user, table } = useContext(SleepContext)
+    const { updateChart, user, table, setQueryDefault, queryDefault } = useContext(SleepContext)
     const [mediaQuerieMobile] = useMediaQuery('(max-width: 560px)')
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -97,7 +97,10 @@ const Filter = () => {
                                     <Box display='flex' flexDirection={mediaQuerieMobile ? 'column' : 'row'} w={mediaQuerieMobile ? '100vw' : '400px'}>
                                         <Button type='submit' colorScheme='orange' mb={5} mr={5}>Pesquisar</Button>
                                         <Button onClick={() => resetar()} colorScheme='orange' mb={5} mr={5}>Resetar</Button>
-                                        <Button onClick={() => {updateChart(''); onClose()}} colorScheme='orange' mb={5}>Mostrar ultimos sete dias</Button>
+                                        <Button onClick={() => {
+                                           window.location.reload()
+                                            onClose()
+                                        }} colorScheme='orange' mb={5}>Mostrar ultimos sete dias</Button>
                                     </Box>
                                 </Box>
                             </form>

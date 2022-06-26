@@ -17,29 +17,37 @@ export const SleepProvider = ({ children }) => {
     ],
 })
   const [table, setTable] = useState([])
+  let [queryDefault, setQueryDefault ] = useState('')
 
   const user = JSON.parse(localStorage.getItem('profile'))
   
-  const updateChart = async (query) => {
+  const updateChart = async (query, pagination) => {
 
     try {
-        const { data } = await getSleep(query)
 
-        let newData = data.filter(dados => dados.user === user)
+      let newQuery;
 
-        newData = newData.map(data => {
+      if(query  !== '' || queryDefault !== '') {
+        setQueryDefault(query)
+        newQuery = `${queryDefault || query}&user=${user}&page=${pagination}&limit=7`
+      } else {
+        newQuery = `?user=${user}&page=${pagination}&limit=7`
+      }
+
+
+      console.log(queryDefault)
+      
+      const { data } = await getSleep(newQuery)
+      
+      console.log('data', data)
+
+        const newData = data.map(data => {
             return data.hour
         })
 
-        newData = newData.slice(0,7)
-
-        let labels = data.filter(dados => dados.user === user)
-
-       labels = labels.map(data => {
+       const labels = data.map(data => {
             return data.date
         })
-
-        labels = labels.slice(0,7)
 
         const dataGraphic = {
             labels,
@@ -54,13 +62,7 @@ export const SleepProvider = ({ children }) => {
         };
         setChartData(dataGraphic)
 
-        let newTable = data.filter(dados => dados.user === user)
-
-        newTable = newTable.slice(0,7)
-
-        console.log('table',newTable)
-
-        setTable(newTable)
+        setTable(data)
 
     } catch (error) {
         console.log(error)
@@ -70,7 +72,7 @@ export const SleepProvider = ({ children }) => {
 
   return (
     <SleepContext.Provider
-      value={ {updateChart, chartData, table, user} }
+      value={ {updateChart, chartData, table, user, queryDefault, setQueryDefault} }
     >
       {children}
     </SleepContext.Provider>
