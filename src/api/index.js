@@ -12,6 +12,8 @@ export const createSleep = (newSleep) => api.post('/sleep', newSleep)
 export const getSleep = (queryString) => api.get(`/sleep${queryString}`)
 
 export const signIn = (formData) => api.post('/user/signin', formData)
-
 export const signUp = (formData) => api.post('/user/signup', formData)
+
+export const deleteSleep = (id) => api.delete(`/sleep/${id}`)
+export const deleteUser = (id) => api.delete(`/user/signin/${id}`)
 

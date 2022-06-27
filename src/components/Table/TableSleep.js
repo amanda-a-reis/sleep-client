@@ -8,16 +8,24 @@ import {
     Td,
     TableCaption,
     TableContainer,
-    useMediaQuery
+    useMediaQuery,
+    Button
 } from '@chakra-ui/react'
 import { SleepContext } from '../../context/Context'
-
-
+import {TiDeleteOutline} from 'react-icons/ti'
+import { deleteSleep } from '../../api'
 
 const TableSleep = () => {
 
-    const { updateChart, user, table } = useContext(SleepContext)
+    const { updateChart, arrayData } = useContext(SleepContext)
     const [mediaQuerieMobile] = useMediaQuery('(max-width: 560px)')
+
+
+    const deleteData = async (id) => {
+        await deleteSleep(id)
+        window.location.reload()
+        console.log(id)
+    }
 
     useEffect(() => {
         updateChart('')
@@ -34,11 +42,12 @@ const TableSleep = () => {
                                 <Th>Data</Th>
                                 <Th>Deitar</Th>
                                 <Th>Acordar</Th>
+                                <Th></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
                             {
-                                table.map(column => (
+                                arrayData.map(column => (
                                     <Tr>
                                         <Td>{column.date}</Td>
                                         <Td>{column.sleepHour}</Td>
@@ -67,12 +76,13 @@ const TableSleep = () => {
                     </Thead>
                     <Tbody>
                         {
-                            table.map(column => (
+                            arrayData.map(data => (
                                 <Tr>
-                                    <Td>{column.date}</Td>
-                                    <Td>{column.sleepHour}</Td>
-                                    <Td>{column.wakeUpHour}</Td>
-                                    <Td>{column.hour}</Td>
+                                    <Td>{data.date}</Td>
+                                    <Td>{data.sleepHour}</Td>
+                                    <Td>{data.wakeUpHour}</Td>
+                                    <Td>{data.hour}</Td>
+                                    <Button colorScheme='orange' mt={2} onClick={() => deleteData(data._id)}><TiDeleteOutline/></Button>
                                 </Tr>
                             ))
                         }

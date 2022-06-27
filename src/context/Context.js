@@ -18,6 +18,7 @@ export const SleepProvider = ({ children }) => {
 })
   const [table, setTable] = useState([])
   let [queryDefault, setQueryDefault ] = useState('')
+  const [arrayData, setArrayData] = useState([])
 
   const user = JSON.parse(localStorage.getItem('profile'))
   
@@ -38,6 +39,7 @@ export const SleepProvider = ({ children }) => {
       console.log(queryDefault)
       
       const { data } = await getSleep(newQuery)
+      setArrayData(data)
       
       console.log('data', data)
 
@@ -72,7 +74,7 @@ export const SleepProvider = ({ children }) => {
 
   return (
     <SleepContext.Provider
-      value={ {updateChart, chartData, table, user, queryDefault, setQueryDefault} }
+      value={ {updateChart, chartData, table, user, queryDefault, setQueryDefault, arrayData} }
     >
       {children}
     </SleepContext.Provider>

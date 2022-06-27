@@ -27,6 +27,7 @@ const Login = () => {
                 const login = await signIn(newData)
                 localStorage.setItem('profile', JSON.stringify(data.email))
                 localStorage.setItem('name', JSON.stringify(login.data.result.name))
+                localStorage.setItem('id', JSON.stringify(login.data.result._id))
                 console.log(login)
                 history.push('/menu')
                 window.location.reload()
