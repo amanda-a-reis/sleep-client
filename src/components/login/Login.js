@@ -6,6 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import {FaKey} from 'react-icons/fa'
 import { signIn, signUp } from '../../api'
 import { SleepContext } from '../../context/Context'
+import { useCookies } from 'react-cookie'
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
@@ -16,24 +17,32 @@ const Login = () => {
     const [showPassoword, setShowPassword] = useState(false)
     const history = useHistory()
     const {user, setUser} = useContext(SleepContext)
+    const [cookies, setCookies] = useCookies()
 
     const onSubmit = async (data) => {
         try {
             if(isSignup) {
-                const {login} = await signUp(data)
+                const {login} = await signUp({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    password: data.password,
+                    confirmPassword: data.confirmPassword
+                })
                 setIsSignup(false)
             } else {
                 const newData = {email: data.email, password: data.password}
                 const login = await signIn(newData)
-                localStorage.setItem('profile', JSON.stringify(data.email))
-                localStorage.setItem('name', JSON.stringify(login.data.result.name))
-                localStorage.setItem('id', JSON.stringify(login.data.result._id))
                 console.log(login)
+                localStorage.setItem('profile', JSON.stringify(login.data.email))
+                localStorage.setItem('name', JSON.stringify(login.data.name))
+                localStorage.setItem('id', JSON.stringify(login.data.id))
+                localStorage.setItem('token', JSON.stringify(login.data.token))
                 history.push('/menu')
                 window.location.reload()
             }
         } catch (error) {
-            alert('Email ou senha incorretos')
+            alert(error)
         }
         
     }
@@ -55,7 +64,7 @@ const Login = () => {
 
     return (
         <Box display='flex' justifyContent="center"  height='100vh' pt={200} bg='orange'>
-            <Box display='flex' flexDirection='column' alignItems='center' bg='white' height={isSignup ? '600' : '450px'} p={50} borderRadius='12px'>
+            <Box display='flex' flexDirection='column' alignItems='center' bg='white' height={isSignup ? '600' : '480px'} p={50} borderRadius='12px'>
                 <Avatar icon={<FaKey fontSize='1.5rem' color='white'/>} bg='orange'/>
                 <Text variant='h5' mt={5} mb={5}>{isSignup ? 'Sign Up' : 'Sign In'}</Text>
                 <FormProvider {...methods}>
@@ -84,6 +93,9 @@ const Login = () => {
                                 isSignup ? 'Já tem uma conta? Sign In' : "Não tem uma conta? Sign up"
                             }</Button>
                         </Box>
+                   {
+                    !isSignup && <Button mt={5} colorScheme='red' onClick={() => history.push('/reset')}>Esqueci minha senha</Button>
+                   } 
                     </Box>
                 </form>
                 </FormProvider>

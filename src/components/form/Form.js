@@ -33,7 +33,7 @@ const Form = () => {
                 sleepHour: data.sleepHour,
                 wakeUpHour: data.wakeUpHour
             }
-            const { newData } = await createSleep({ "data": dataUser })
+            const { newData } = await createSleep({data: dataUser})
             updateChart()
             window.location.reload()
             onClose()
