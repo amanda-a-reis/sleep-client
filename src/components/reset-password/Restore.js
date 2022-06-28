@@ -10,8 +10,13 @@ const Restore = () => {
     const history = useHistory()
 
     const onSubmit = async (data) => {
-        await resetPassword(token.id, data)
-        history.push('/login')
+        try {
+            await resetPassword(token.id, data)
+            history.push('/login')
+        } catch (error) {
+            alert('As senhas não são iguais ou seu token expirou')
+        }
+
     }
 
     const methods = useForm();

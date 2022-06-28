@@ -11,7 +11,6 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { getSleep } from '../../api/index'
 import { SleepContext } from '../../context/Context'
 
 

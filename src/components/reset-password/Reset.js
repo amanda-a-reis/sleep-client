@@ -9,8 +9,12 @@ const Reset = () => {
     const history = useHistory()
 
     const onSubmit = async (data) => {
-        await forgotPassword(data.email)
-        history.push('/login')
+        try {
+            await forgotPassword(data.email)
+            history.push('/login')
+        } catch (error) {
+            alert('Email incorreto')
+        }
     }
 
     const methods = useForm();

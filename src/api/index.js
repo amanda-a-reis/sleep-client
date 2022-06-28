@@ -15,8 +15,6 @@ let config = {
     }
 }
 
-console.log(token)
-
 export const createSleep = (newSleep) => api.post('/sleep', newSleep, config)
 
 export const getSleep = (queryString) => api.get(`/sleep${queryString}`, config)
